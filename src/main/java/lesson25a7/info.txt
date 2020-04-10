@@ -1,0 +1,2 @@
+Algorithms #7.
+- Hash structures. HashMap.
