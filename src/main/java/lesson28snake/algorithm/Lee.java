@@ -72,7 +72,7 @@ public class Lee {
         boolean found = false;
         while (!(curr.isEmpty() || found)){
             counter[0]++;
-            Set<LPoint> next = curr.stream().map(point -> neighboursUnvisited(point))
+            Set<LPoint> next = curr.stream().map(this::neighboursUnvisited)
                     .flatMap(Collection::stream)
                     .collect(Collectors.toSet());
             next.forEach(point -> set(point,counter[0]));

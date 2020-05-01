@@ -1,6 +1,5 @@
 package lesson28snake.algorithm;
 
-import java.util.Objects;
 
 public class LPoint {
     public final int x;

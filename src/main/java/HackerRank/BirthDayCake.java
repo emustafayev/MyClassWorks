@@ -11,8 +11,9 @@ public class BirthDayCake {
 
     // Complete the birthdayCakeCandles function below.
     static int birthdayCakeCandles(int[] ar) {
-        return Arrays.stream(ar).boxed().collect(Collectors.groupingBy(i -> i))
-                .entrySet().stream().max(Comparator.comparingInt(Map.Entry::getKey)).get()
+        return Arrays.stream(ar).boxed()
+                .collect(Collectors.groupingBy(i -> i))
+                .entrySet().stream().max(Comparator.comparingInt(Map.Entry::getKey)).orElseThrow(RuntimeException::new)
                 .getValue().size();
     }
 
