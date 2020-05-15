@@ -1,32 +1,36 @@
 package HackerRank;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ClimbingLeaderboard {
+    static class Score{
+        private final int val;
+
+        Score(int val) {
+            this.val = val;
+        }
+    }
+
     public static void main(String[] args) {
-        climbingLeaderboard(new int[]{})
+        //climbingLeaderboard(new int[]{})
     }
 
     static int[] climbingLeaderboard(int[] scores, int[] alice){
-        int[] rank = {0};
+        List<Score> distinct_scores = Arrays.stream(scores)
+                .distinct()
+                .mapToObj(Score::new)
+                .collect(Collectors.toList());
 
-        int[] result = new int[alice.length];
+        return Arrays.stream(alice).map(s->calculate_score(distinct_scores,s)).toArray();
+    }
 
-            Arrays.stream(scores).boxed()
-                .collect(Collectors.toSet())
-                .stream()
-                .sorted((a,b)->b-a)
-                .flatMapToInt(s->
-                        Arrays.stream(alice).map(as->{
-                    if (s>=as) {
-                        result[rank[0]] = rank[0];
-
-                    }
-                    return result[rank[0]++];
-        }));
-            return result;
-
+    private static int calculate_score(List<Score> distinct_scores, int s) {
+        int index = Collections.binarySearch(distinct_scores,new Score(s),(a, b)->b.val-a.val);
+        if (index>0) return index+1;
+        if (index==0) return 1;
+        return Math.abs(index);
     }
 }

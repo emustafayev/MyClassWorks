@@ -8,12 +8,10 @@ public class ExtraLongFactorials {
     }
 
     static void extraLongFactorial(int n){
-        BigInteger res = new BigInteger(String.valueOf(2));
-        System.out.println(extraLongFactorialR(n,res));
-    }
-
-    private static BigInteger extraLongFactorialR(int n, BigInteger res) {
-        if (n==2) return new BigInteger(String.valueOf(2));
-        return res.multiply(extraLongFactorialR(n-1,res));
+        BigInteger result = BigInteger.valueOf(1);
+        for (int i = 2; i <= n; i++) {
+            result = result.multiply(BigInteger.valueOf(i));
+        }
+        System.out.println(result);
     }
 }
